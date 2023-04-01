@@ -6,7 +6,8 @@ import random
 import tkinter as tk
 from PIL import Image, ImageTk
 from itertools import count
-
+import psutil
+# memory = 60mb
 x = 1400
 cycle = 0
 check = 1
@@ -74,6 +75,10 @@ def main_screen():
 
     button_sub = customtkinter.CTkButton(master = main_frame , text = 'submit' , command = read_feelings)
     button_sub.pack(pady = 12 , padx = 10)
+    def e():
+        exit(0)
+    button = customtkinter.CTkButton(master =main_frame , text = 'exit' , command = e)
+    button.pack(pady = 12 , padx = 10)
     
 
 def main_room_meeting():
@@ -105,7 +110,8 @@ def main_room_meeting():
         cv2.waitkey(0)
     def e():
         bfr.destroy()
-    button = customtkinter.CTkButton(master =bfr , text = 'exit' , command = r)
+        main_screen()
+    button = customtkinter.CTkButton(master =bfr , text = 'exit' , command = e)
     button.pack(pady = 12 , padx = 10)
     button_login = customtkinter.CTkButton(master =bfr , text = 'send' , command = r)
     button_login.pack(pady = 12 , padx = 10)
