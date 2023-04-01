@@ -81,11 +81,31 @@ def main_room_meeting():
     bfr.pack(pady = 20 , padx = 60 , fill = 'both', expand = True)
     entery_feeling_1 = customtkinter.CTkEntry(master = bfr , placeholder_text = "chat box" , font = ("Comic Sans MS", 10, "bold") , width=250)
     entery_feeling_1.pack(pady = 12 , padx = 10)
-    
-    img = cv2.imread("1.png", cv2.IMREAD_COLOR)
-    cv2.imshow("facetime!", img)
-    cv2.waitkey(0)
-    cv2.destroyAllWindows()
+    chat = ""
+    def r():
+        chat = entery_feeling_1.get()
+        if chat == feelings[0]:
+            img = cv2.imread("happy.png", cv2.IMREAD_COLOR)
+            label = customtkinter.CTkLabel(master = bfr , text = chat , font = ("Comic Sans MS", 15, "bold"))
+            label.pack(pady = 12 , padx = 10)
+        elif chat == feelings[1]:
+            img = cv2.imread("sleep.png", cv2.IMREAD_COLOR)
+            label = customtkinter.CTkLabel(master = bfr , text = chat , font = ("Comic Sans MS", 15, "bold"))
+            label.pack(pady = 12 , padx = 10)
+            
+        elif chat == feelings[2]:
+            img = cv2.imread("worried .png", cv2.IMREAD_COLOR)
+            label = customtkinter.CTkLabel(master = bfr , text = chat , font = ("Comic Sans MS", 15, "bold"))
+            label.pack(pady = 12 , padx = 10)
+        else:
+            img = cv2.imread("angry.png", cv2.IMREAD_COLOR)
+            label = customtkinter.CTkLabel(master = bfr , text = chat , font = ("Comic Sans MS", 15, "bold"))
+            label.pack(pady = 12 , padx = 10)
+        cv2.imshow("facetime!", img)
+        cv2.waitkey(0)
+    button_login = customtkinter.CTkButton(master =bfr , text = 'send' , command = r)
+    button_login.pack(pady = 12 , padx = 10)
+
 def before_meetng_room():
     root.geometry('500x450')
     main_frame = customtkinter.CTkFrame(master = root)
