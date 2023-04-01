@@ -82,7 +82,7 @@ def main_room_meeting():
     entery_feeling_1 = customtkinter.CTkEntry(master = bfr , placeholder_text = "chat box" , font = ("Comic Sans MS", 10, "bold") , width=250)
     entery_feeling_1.pack(pady = 12 , padx = 10)
     
-    img = cv2.imread("1.png", cv2.IMREAD_COLOR)
+    img = cv2.imread("geeksforgeeks.png", cv2.IMREAD_COLOR)
     cv2.imshow("facetime!", img)
     cv2.waitkey(0)
     cv2.destroyAllWindows()
