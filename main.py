@@ -1,48 +1,12 @@
 import customtkinter
+from tkinter import *
+
 import time
 import random
 import tkinter as tk
 from PIL import Image, ImageTk
 from itertools import count
 
-# pick an animated gif file you have in the working directory
-
-
-class ImageLabel(tk.Label):
-    """a label that displays images, and plays them if they are gifs"""
-    def load(self, im):
-        if isinstance(im, str):
-            im = Image.open(im)
-        self.loc = 0
-        self.frames = []
-
-        try:
-            for i in count(1):
-                self.frames.append(ImageTk.PhotoImage(im.copy()))
-                im.seek(i)
-        except EOFError:
-            pass
-
-        try:
-            self.delay = im.info['duration']
-        except:
-            self.delay = 100
-
-        if len(self.frames) == 1:
-            self.config(image=self.frames[0])
-        else:
-            self.next_frame()
-
-    def unload(self):
-        self.config(image="")
-        self.frames = None
-
-    def next_frame(self):
-        if self.frames:
-            self.loc += 1
-            self.loc %= len(self.frames)
-            self.config(image=self.frames[self.loc])
-            self.after(self.delay, self.next_frame)
 x = 1400
 cycle = 0
 check = 1
@@ -51,7 +15,7 @@ sleep_num = [10,11,12,13,15]
 walk_left = [6,7]
 walk_right = [8,9]
 event_number = random.randrange(1,3,1)
-impath = 'C:\\your\\path\\to\\file'
+
 
 feelings = ['0']*4
 
@@ -62,8 +26,9 @@ customtkinter.set_default_color_theme("green")
 
 root = customtkinter.CTk()
 root.geometry('500x350')
+meeting_room = customtkinter.CTk()
+meeting_room.geometry('500x350')
 Font_tuple = ("Comic Sans MS", 24, "bold")
-
 
         
 
@@ -103,35 +68,32 @@ def main_screen():
         for i in range(1,100 , 1):
             progress.set(i*0.01)
             root.update_idletasks()
-            time.sleep(0.1)
-        time.sleep(3)
+            time.sleep(0.01)
         main_frame.destroy()
         before_meetng_room()
 
     button_sub = customtkinter.CTkButton(master = main_frame , text = 'submit' , command = read_feelings)
     button_sub.pack(pady = 12 , padx = 10)
     
-        
-
 
 def before_meetng_room():
-    bfr = customtkinter.CTkFrame(master = root)
-    bfr.pack(pady = 20 , padx = 60 , fill = 'both', expand = True)
-    label = customtkinter.CTkLabel(master = bfr , text = "your meeting will starts in" , font = Font_tuple)
+    root.geometry('500x450')
+    main_frame = customtkinter.CTkFrame(master = root)
+    main_frame.pack(pady = 20 , padx = 60 , fill = 'both', expand = True)
+    label = customtkinter.CTkLabel(master = main_frame , text = "your meeting will starts in" , font = Font_tuple)
     label.pack(pady = 12 , padx = 10)
-    cnt = customtkinter.CTkLabel(master = bfr , text = "30 secends" , font = Font_tuple)
+    cnt = customtkinter.CTkLabel(master = main_frame , text = "30 secends" , font = Font_tuple)
     cnt.pack(pady = 12 , padx = 10)
-    _label = customtkinter.CTkLabel(master = bfr , text = "Don't make him angry, otherwise it will be very bad" , font =  ("Comic Sans MS", 13, "bold"))
+    _label = customtkinter.CTkLabel(master = main_frame , text = "Don't make him angry, otherwise it will be very bad" , font =  ("Comic Sans MS", 13, "bold"))
     _label.pack(pady = 12 , padx = 10)
-
-
-        
+    progress = customtkinter.CTkProgressBar(master = main_frame)
+    progress.pack(pady = 12 , padx = 10)
+    for i in range(1,100 , 1):
+        progress.set(i*0.01)
+        root.update_idletasks()
+        time.sleep(0.1)
+    main_frame.destroy()
     
-
-
-
-
-
 
 
 
@@ -146,8 +108,8 @@ def login():
         for i in range(1,100 , 1):
             progress.set(i*0.01)
             root.update_idletasks()
-            time.sleep(0.1)
-        time.sleep(3)
+            time.sleep(0.01)
+        
         login_screen.destroy()
         main_screen()
     
