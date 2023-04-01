@@ -103,6 +103,10 @@ def main_room_meeting():
             label.pack(pady = 12 , padx = 10)
         cv2.imshow("facetime!", img)
         cv2.waitkey(0)
+    def e():
+        bfr.destroy()
+    button = customtkinter.CTkButton(master =bfr , text = 'exit' , command = r)
+    button.pack(pady = 12 , padx = 10)
     button_login = customtkinter.CTkButton(master =bfr , text = 'send' , command = r)
     button_login.pack(pady = 12 , padx = 10)
 
