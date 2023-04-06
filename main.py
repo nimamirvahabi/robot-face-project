@@ -1,6 +1,7 @@
 import customtkinter
 from tkinter import *
 import cv2
+import serial
 import time
 import random
 import tkinter as tk
@@ -17,7 +18,6 @@ walk_left = [6,7]
 walk_right = [8,9]
 event_number = random.randrange(1,3,1)
 
-
 feelings = ['0']*4
 
 m = 0
@@ -32,9 +32,13 @@ meeting_room.geometry('500x350')
 Font_tuple = ("Comic Sans MS", 24, "bold")
 
         
+ser = serial.Serial(baudrate = 9600 , port='COM9' , parity=serial.PARITY_NONE ,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS, timeout = 0)
+ser.baudrate = 9600
+ser.port = 'COM9'
 
-
-
+def read_arduino():
+     x=ser.readline()
+     return x
 def main_screen():
     root.geometry('500x450')
     main_frame = customtkinter.CTkFrame(master = root)
@@ -155,20 +159,26 @@ def login():
         main_screen()
     
 
-login_screen = customtkinter.CTkFrame(master = root)
-login_screen.pack(pady = 20 , padx = 60 , fill = 'both', expand = True)
+# login_screen = customtkinter.CTkFrame(master = root)
+# login_screen.pack(pady = 20 , padx = 60 , fill = 'both', expand = True)
 
-label = customtkinter.CTkLabel(master = login_screen , text = "login system to GUI-AI" , font = Font_tuple)
-label.pack(pady = 12 , padx = 10)
+# label = customtkinter.CTkLabel(master = login_screen , text = "login system to GUI-AI" , font = Font_tuple)
+# label.pack(pady = 12 , padx = 10)
 
-entery_1 = customtkinter.CTkEntry(master = login_screen , placeholder_text = "enter your user name" , font = ("Comic Sans MS", 15, "bold") , width=200)
-entery_1.pack(pady = 12 , padx = 10)
+# entery_1 = customtkinter.CTkEntry(master = login_screen , placeholder_text = "enter your user name" , font = ("Comic Sans MS", 15, "bold") , width=200)
+# entery_1.pack(pady = 12 , padx = 10)
 
-entery_2 = customtkinter.CTkEntry(master = login_screen ,show = '*', placeholder_text = "enter your password" , font = ("Comic Sans MS", 15, "bold") , width=200)
-entery_2.pack(pady = 12 , padx = 10)
+# entery_2 = customtkinter.CTkEntry(master = login_screen ,show = '*', placeholder_text = "enter your password" , font = ("Comic Sans MS", 15, "bold") , width=200)
+# entery_2.pack(pady = 12 , padx = 10)
 
-button_login = customtkinter.CTkButton(master = login_screen , text = 'login' , command = login)
-button_login.pack(pady = 12 , padx = 10)
+# button_login = customtkinter.CTkButton(master = login_screen , text = 'login' , command = login)
+# button_login.pack(pady = 12 , padx = 10)
 
 
-root.mainloop()
+# root.mainloop()
+while True:
+    a = read_arduino()
+    x = a.decode("utf-8") 
+    if x!= '':
+        print(x)
+    
