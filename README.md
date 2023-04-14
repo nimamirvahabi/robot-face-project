@@ -1,6 +1,6 @@
 # ROBOT face project
 -------------------
-this project is about a robot called ecld-9 that like talking but he dont know anything about any language. You can learn some words to him.
+this project is about a robot called ecld-9 that loves talking but he dont know anything about any language. You can learn some words to him.
 before meeting him you should write a list about four words that you want to learn him. but he isn't intelliget so you can only choose 4 words to make him happy, clam, worried, angry.
 but there is another way to talk to him too.
 he knows what is distance, so you can give him a sensor and choose sensor mode on app and then you move an object to see what will happen.
